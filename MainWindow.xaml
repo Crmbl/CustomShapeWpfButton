@@ -1,22 +1,44 @@
-﻿<Window x:Class="CustomShapeWpfButton.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="CustomShapeWpfButton.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="200" Width="400">
     <Grid>
-        <Button>
-                <Path Fill="white"
-                              Data="M 0,
-                                    0 A 100,
-                                    100 90 0 0 100,
-                                    100 L 100,
-                                    100 100,
-                        75 A 75,
-                        75 90 0 1 25,
-                                    0 H 25,
-                                    0" />
-        </Button>
+        <Path Fill="Black">
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Exclude">
+                    <CombinedGeometry.Geometry1>
+                        <PathGeometry>
+                            <PathFigure StartPoint="30,0">
+                                <ArcSegment Point="30,100" Size="100, 90" IsLargeArc="False" SweepDirection="Counterclockwise"/>
+                                <LineSegment Point="80,50"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </CombinedGeometry.Geometry1>
+                    <CombinedGeometry.Geometry2>
+                        <PathGeometry>
+                            <PathFigure StartPoint="60,0">
+                                <ArcSegment Point="60,100" Size="150, 90" IsLargeArc="False" SweepDirection="Counterclockwise"/>
+                                <LineSegment Point="100,50"/>
+                            </PathFigure>
+                        </PathGeometry>
+                    </CombinedGeometry.Geometry2>
+                </CombinedGeometry>
+            </Path.Data>
+        </Path>
+        
+        <!--<Path Fill="Black"
+              Margin="10,25.5,282,43.5"
+              Width="100"
+              Height="100"
+              Data="M 30,                     
+                    0 a 100,
+                    140 90 0 0 0,
+                    100 l 70,
+                    -50" />-->
+
     </Grid>
 </Window>

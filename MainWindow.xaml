@@ -6,8 +6,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Margin="29.333,38.333,-29.333,-38.333">
-                <Path Fill="{TemplateBinding Background}"
+        <Button>
+                <Path Fill="white"
                               Data="M 0,
                                     0 A 100,
                                     100 90 0 0 100,

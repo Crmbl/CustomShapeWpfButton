@@ -5,40 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="CustomShapeWpfButton.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="400">
-    <Grid>
-        <Path Fill="Black">
+        Title="MainWindow" Height="400" Width="400">
+    <Grid ShowGridLines="True">
+        <Path Fill="#3F000000" Margin="162.5,142.5,154.5,189" Height="37.5" Width="53">
             <Path.Data>
-                <CombinedGeometry GeometryCombineMode="Exclude">
-                    <CombinedGeometry.Geometry1>
-                        <PathGeometry>
-                            <PathFigure StartPoint="30,0">
-                                <ArcSegment Point="30,100" Size="100, 90" IsLargeArc="False" SweepDirection="Counterclockwise"/>
-                                <LineSegment Point="80,50"/>
-                            </PathFigure>
-                        </PathGeometry>
-                    </CombinedGeometry.Geometry1>
-                    <CombinedGeometry.Geometry2>
-                        <PathGeometry>
-                            <PathFigure StartPoint="60,0">
-                                <ArcSegment Point="60,100" Size="150, 90" IsLargeArc="False" SweepDirection="Counterclockwise"/>
-                                <LineSegment Point="100,50"/>
-                            </PathFigure>
-                        </PathGeometry>
-                    </CombinedGeometry.Geometry2>
-                </CombinedGeometry>
+                <PathGeometry>
+                    <PathFigure StartPoint="26.5,12.5">
+                        <ArcSegment Point="44.2,19.84" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="53,11" />
+                        <ArcSegment Point="0,11" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="8.81,19.84" />
+                        <ArcSegment Point="26.5,12.5" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                    </PathFigure>
+                </PathGeometry>
             </Path.Data>
         </Path>
-        
-        <!--<Path Fill="Black"
-              Margin="10,25.5,282,43.5"
-              Width="100"
-              Height="100"
-              Data="M 30,                     
-                    0 a 100,
-                    140 90 0 0 0,
-                    100 l 70,
-                    -50" />-->
 
+        <Path Stretch="Uniform" UseLayoutRounding="False" Fill="#3FFF0000" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="50" Margin="175,155,167,164">
+            <Path.Data>
+                <EllipseGeometry RadiusX="1" RadiusY="1"/>
+            </Path.Data>
+        </Path>
+
+        <Path Stretch="Uniform" UseLayoutRounding="False" Fill="#3F00FF00" VerticalAlignment="Center" HorizontalAlignment="Center" Height="75" Width="75" Margin="162.5,142.5,154.5,151.5">
+            <Path.Data>
+                <EllipseGeometry RadiusX="1" RadiusY="1"/>
+            </Path.Data>
+        </Path>
     </Grid>
 </Window>

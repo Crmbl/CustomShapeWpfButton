@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="CustomShapeWpfButton.ArcButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="250">
+    <Grid Height="75" Width="75">
+        <Path x:Name="TopButton" Height="37.5" Width="53" Margin="11,0,11,37.5"
+              Fill="{Binding BackgroundTopButton}"
+              Visibility="{Binding Path=ShowTopButton, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="26.5,12.5">
+                        <ArcSegment Point="44.2,19.84" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="53,11" />
+                        <ArcSegment Point="0,11" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="8.81,19.84" />
+                        <ArcSegment Point="26.5,12.5" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path x:Name="BottomButton" Height="37.5" Width="53" Margin="11,37.5,11,0"
+              Fill="{Binding BackgroundBottomButton}"
+              Visibility="{Binding Path=ShowBottomButton, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="26.5,25">
+                        <ArcSegment Point="44.2,17.65" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="53,26.5" />
+                        <ArcSegment Point="0,26.5" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="8.81,17.65" />
+                        <ArcSegment Point="26.5,25" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path x:Name="LeftButton" Height="53" Width="37.5" Margin="0,11,37.5,11"
+              Fill="{Binding BackgroundLeftButton}"
+              Visibility="{Binding Path=ShowLeftButton, Converter={StaticResource BoolToVisibilityConverter}}" >
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="12.5,26.5">
+                        <ArcSegment Point="19.81,8.823" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="11.01,-0.02" />
+                        <ArcSegment Point="11,53" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="19.81,44.15" />
+                        <ArcSegment Point="12.5,26.5" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path x:Name="RightButton" Height="53" Width="37.5" Margin="37.5,11,0,11"
+              Fill="{Binding BackgroundRightButton}"
+              Visibility="{Binding Path=ShowRightButton, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="25,26.5">
+                        <ArcSegment Point="17.67,8.823" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="26.5,-0.03" />
+                        <ArcSegment Point="26.5,53" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="17.67,44.15" />
+                        <ArcSegment Point="25,26.5" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path x:Name="CircleButton" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="50"
+              Fill="{Binding BackgroundCenterButton}"
+              Visibility="{Binding Path=ShowCenterButton, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Path.Data>
+                <EllipseGeometry RadiusX="1" RadiusY="1"/>
+            </Path.Data>
+        </Path>
+    </Grid>
+</UserControl>

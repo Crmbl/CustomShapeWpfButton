@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="400">
     <Grid ShowGridLines="True">
-        <Path Fill="#3F000000" Margin="162.5,142.5,154.5,189" Height="37.5" Width="53">
+        <Path Fill="#3F000000" Margin="162.5,142.5,154.5,189" Height="37.5" Width="53" Panel.ZIndex="100" >
             <Path.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="26.5,12.5">
@@ -21,13 +21,55 @@
             </Path.Data>
         </Path>
 
-        <Path Stretch="Uniform" UseLayoutRounding="False" Fill="#3FFF0000" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="50" Margin="175,155,167,164">
+        <Path Fill="#3F065EF5" Height="37.5" Width="53" Panel.ZIndex="100" Margin="173.5,180.01,165.499,151.478">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="26.5,25">
+                        <ArcSegment Point="44.2,17.65" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="53,26.5" />
+                        <ArcSegment Point="0,26.5" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="8.81,17.65" />
+                        <ArcSegment Point="26.5,25" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Fill="#3FF506CA" Height="53" Width="37.5" Panel.ZIndex="100" Margin="162.5,153.515,191.999,162.484">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="12.5,26.5">
+                        <ArcSegment Point="19.81,8.823" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="11.01,-0.02" />
+                        <ArcSegment Point="11,53" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="19.81,44.15" />
+                        <ArcSegment Point="12.5,26.5" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Fill="#59F50606" Height="53" Width="37.5" Panel.ZIndex="100" Margin="200.018,153.515,154.481,162.484">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="25,26.5">
+                        <ArcSegment Point="17.67,8.823" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <LineSegment Point="26.5,-0.03" />
+                        <ArcSegment Point="26.5,53" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="17.67,44.15" />
+                        <ArcSegment Point="25,26.5" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Path Stretch="Uniform" Panel.ZIndex="80" UseLayoutRounding="False" Fill="#3FFF0000" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="50" Margin="175,155,167,164">
             <Path.Data>
                 <EllipseGeometry RadiusX="1" RadiusY="1"/>
             </Path.Data>
         </Path>
 
-        <Path Stretch="Uniform" UseLayoutRounding="False" Fill="#3F00FF00" VerticalAlignment="Center" HorizontalAlignment="Center" Height="75" Width="75" Margin="162.5,142.5,154.5,151.5">
+        <Path Stretch="Uniform" Panel.ZIndex="70" UseLayoutRounding="False" Fill="#3F00FF00" VerticalAlignment="Center" HorizontalAlignment="Center" Height="75" Width="75" Margin="162.5,142.5,154.5,151.5">
             <Path.Data>
                 <EllipseGeometry RadiusX="1" RadiusY="1"/>
             </Path.Data>

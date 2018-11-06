@@ -6,10 +6,8 @@
         xmlns:customshapewpfbutton="clr-namespace:CustomShapeWpfButton"
         x:Class="CustomShapeWpfButton.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="200">
+        Title="MainWindow" Height="400" Width="600">
     <Grid ShowGridLines="True">
-        <!--<customshapewpfbutton:ArcButton />-->
-        <customshapewpfbutton:TopArcButton Background="Red" x:Name="TopButton" />
-        <!--ShowBottomButton="True" ShowTopButton="True" ShowLeftButton="True" ShowRightButton="True" ShowCenterButton="False"-->
+        <customshapewpfbutton:TopArcButton x:Name="TopButton" Text="Top" Height="20" Width="53"/>
     </Grid>
 </Window>

@@ -328,3 +328,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+.vs/CustomShapeWpfButton/v15/Server/sqlite3/storage.ide
+.vs/CustomShapeWpfButton/v15/Server/sqlite3/storage.ide-shm
+.vs/CustomShapeWpfButton/v15/Server/sqlite3/storage.ide-wal
+.vs/CustomShapeWpfButton/v15/.suo

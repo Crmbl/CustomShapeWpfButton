@@ -1,4 +1,4 @@
-﻿<local:BaseArcButton x:Class="CustomShapeWpfButton.TopArcButton"
+﻿<local:BaseArcButton x:Class="CustomShapeWpfButton.BottomArcButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,12 +19,12 @@
                     Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                     <Path.Data>
                         <PathGeometry>
-                            <PathFigure StartPoint="26.5,12.5">
-                                <ArcSegment Point="44.2,19.79" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
-                                <LineSegment Point="52.79,11" />
-                                <ArcSegment Point="0.21,11" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Counterclockwise" />
-                                <LineSegment Point="8.81,19.79" />
-                                <ArcSegment Point="26.5,12.5" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                            <PathFigure StartPoint="26.5,25">
+                                <ArcSegment Point="44.2,17.65" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                                <LineSegment Point="53,26.5" />
+                                <ArcSegment Point="0,26.5" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
+                                <LineSegment Point="8.81,17.65" />
+                                <ArcSegment Point="26.5,25" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
                             </PathFigure>
                         </PathGeometry>
                     </Path.Data>

@@ -8,6 +8,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="600">
     <Grid ShowGridLines="True">
-        <customshapewpfbutton:TopArcButton x:Name="TopButton" Text="Top" Height="20" Width="53"/>
+        <!--<customshapewpfbutton:TopArcButton x:Name="TopButton" Text="Top" Height="20" Width="53" TextMargin="0,0,0,7" Margin="186.5,28.333,352.499,320.666"/>-->
+        <!--<customshapewpfbutton:LeftArcButton x:Name="LeftButton" Text="Left" Height="53" Width="20" TextMargin="0,0,7,0" Margin="148.333,66.666,423.666,249.333"/>-->
+        <customshapewpfbutton:RightArcButton x:Name="RightButton" Text="Right" Height="53" Width="20" TextMargin="7,0,0,0" Margin="230.749,71.666,341.25,244.333"/>
+        <!--<customshapewpfbutton:BottomArcButton x:Name="BottomButton" Text="Bottom" Height="20" Width="53" TextMargin="0,7,0,0" Margin="153.833,110.499,385.166,238.5"/>-->
+        <!--<customshapewpfbutton:CenterArcButton x:Name="CenterButton" Text="Split" Height="50" Width="50" Margin="215,78.833,327,240.166" />-->
+        <!--<customshapewpfbutton:ArcButton Margin="-124.667,-10,124.667,10" />-->
     </Grid>
 </Window>
+
+    
+    <!--POUR BOTTOM ET RIGHT
+    => la taille n'est pas bonne, 37.5 OUI ! Mais 20... Non, faut recalculer le bordel je pense.-->

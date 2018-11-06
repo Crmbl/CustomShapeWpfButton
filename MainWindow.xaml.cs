@@ -11,7 +11,7 @@ namespace CustomShapeWpfButton
         {
             InitializeComponent();
 
-            this.TopButton.Click += TopButton_Click;
+            //this.TopButton.Click += TopButton_Click;
         }
 
         private void TopButton_Click(object sender, RoutedEventArgs e)

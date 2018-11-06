@@ -57,10 +57,34 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BaseArcButton.cs" />
+    <Compile Include="BottomArcButton.xaml.cs">
+      <DependentUpon>BottomArcButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CenterArcButton.xaml.cs">
+      <DependentUpon>CenterArcButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LeftArcButton.xaml.cs">
+      <DependentUpon>LeftArcButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RightArcButton.xaml.cs">
+      <DependentUpon>RightArcButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TopArcButton.xaml.cs">
       <DependentUpon>TopArcButton.xaml</DependentUpon>
     </Compile>
     <Page Include="ArcButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BottomArcButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CenterArcButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LeftArcButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -75,11 +99,15 @@
     <Compile Include="ArcButton.xaml.cs">
       <DependentUpon>ArcButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RightArcButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TopArcButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

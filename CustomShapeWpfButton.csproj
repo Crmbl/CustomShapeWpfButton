@@ -63,6 +63,7 @@
     <Compile Include="CenterArcButton.xaml.cs">
       <DependentUpon>CenterArcButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrawUtil.cs" />
     <Compile Include="LeftArcButton.xaml.cs">
       <DependentUpon>LeftArcButton.xaml</DependentUpon>
     </Compile>

@@ -7,17 +7,17 @@
         x:Class="CustomShapeWpfButton.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="600">
-    <Grid ShowGridLines="True" RenderTransformOrigin="0.5,0.5">
+    <Grid x:Name="Grid" ShowGridLines="True" RenderTransformOrigin="0.5,0.5">
         <!--<customshapewpfbutton:TopArcButton x:Name="TopButton" Text="Top" Height="20" Width="53" TextMargin="0,0,0,7" Margin="188.125,26.583,350.874,322.416"/>
         <customshapewpfbutton:LeftArcButton x:Name="LeftButton" Text="Left" Height="53" Width="20" TextMargin="0,0,7,0" Margin="147.708,67.104,424.291,248.896"/>-->
         <!--<customshapewpfbutton:RightArcButton x:Name="RightButton" Panel.ZIndex="75" Text="Right" Height="53.3" Width="20.2" FontSize="4" TextMargin="7.5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="54.8,0,0,0" />-->
         <!--<customshapewpfbutton:BottomArcButton x:Name="BottomButton" Text="" Height="20" Width="53" TextMargin="0,6,0,0" Margin="173.562,150.767,365.437,198.232"/>-->
         <!--<customshapewpfbutton:CenterArcButton x:Name="CenterButton" Panel.ZIndex="10" Text="" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#10000000" BorderBrush="#666666" />-->
         <!--<customshapewpfbutton:CenterArcButton x:Name="OuterButton" Panel.ZIndex="9" Text="" Height="75" Width="75"  VerticalAlignment="Center" HorizontalAlignment="Center" Background="#10000000" BorderBrush="#666666" />-->
-        <customshapewpfbutton:ArcButton VerticalAlignment="Center" HorizontalAlignment="Center" Margin="265.316,143.646,305.333,172.333" />
+        <!--<customshapewpfbutton:ArcButton VerticalAlignment="Center" HorizontalAlignment="Center" Margin="254.166,140,262.833,154"  />-->
 
-        <Grid.RenderTransform>
+        <!--<Grid.RenderTransform>
             <ScaleTransform ScaleX="3" ScaleY="3" />
-        </Grid.RenderTransform>
+        </Grid.RenderTransform>-->
     </Grid>
 </Window>

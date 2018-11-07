@@ -12,6 +12,7 @@ namespace CustomShapeWpfButton
             InitializeComponent();
 
             //this.TopButton.Click += TopButton_Click;
+            Grid.Children.Add(DrawUtil.CreateRightButton(300));
         }
 
         private void TopButton_Click(object sender, RoutedEventArgs e)

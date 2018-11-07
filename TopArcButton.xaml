@@ -22,7 +22,7 @@
                             <PathFigure StartPoint="26.5,12.5">
                                 <ArcSegment Point="44.2,19.79" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
                                 <LineSegment Point="52.79,11" />
-                                <ArcSegment Point="0.21,11" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                                <ArcSegment Point="0.2,11" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Counterclockwise" />
                                 <LineSegment Point="8.81,19.79" />
                                 <ArcSegment Point="26.5,12.5" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
                             </PathFigure>

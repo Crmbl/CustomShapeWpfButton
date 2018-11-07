@@ -9,22 +9,21 @@
         <ControlTemplate TargetType="Button">
             <Grid Height="{Binding Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
                   Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
-                  Visibility="{Binding Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Converter={StaticResource BoolToVisibilityConverter}}"
-                  RenderTransformOrigin="0.5,0.5">
+                  Visibility="{Binding Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Converter={StaticResource BoolToVisibilityConverter}}">
                 <Path x:Name="Path" 
                     StrokeThickness="0.3" 
                     Height="{Binding Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" 
-                    Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" 
+                    Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
                     Stroke="{Binding BorderBrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
                     Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                     <Path.Data>
                         <PathGeometry>
-                            <PathFigure StartPoint="25,26.5">
-                                <ArcSegment Point="17.67,8.823" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
-                                <LineSegment Point="26.5,-0.03" />
-                                <ArcSegment Point="26.5,53" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
-                                <LineSegment Point="17.67,44.15" />
-                                <ArcSegment Point="25,26.5" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                            <PathFigure StartPoint="7.55,26.65">
+                                <ArcSegment Point="0.2,9.05" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                                <LineSegment Point="9.05,0.2" />
+                                <ArcSegment Point="9.1,53.1" Size="37.35,37.35" IsLargeArc="False" SweepDirection="Clockwise" />
+                                <LineSegment Point="0.2,44.28" />
+                                <ArcSegment Point="7.55,26.65" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
                             </PathFigure>
                         </PathGeometry>
                     </Path.Data>
@@ -35,9 +34,6 @@
                            Foreground="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
                            FontSize="{Binding FontSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
                            Text="{Binding Text, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
-                <Grid.RenderTransform>
-                    <ScaleTransform ScaleX="2" ScaleY="2" />
-                </Grid.RenderTransform>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="true">

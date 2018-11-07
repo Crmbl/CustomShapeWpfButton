@@ -29,7 +29,7 @@
                            FontSize="{Binding FontSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
                            Text="{Binding Text, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
                 <Grid.RenderTransform>
-                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
                 </Grid.RenderTransform>
             </Grid>
             <ControlTemplate.Triggers>

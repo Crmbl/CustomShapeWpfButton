@@ -14,17 +14,17 @@
                 <Path x:Name="Path" 
                     StrokeThickness="0.3" 
                     Height="{Binding Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" 
-                    Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" 
+                    Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}"
                     Stroke="{Binding BorderBrush, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
                     Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                     <Path.Data>
-                        <PathGeometry>
-                            <PathFigure StartPoint="26.5,25">
-                                <ArcSegment Point="44.2,17.65" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
-                                <LineSegment Point="53,26.5" />
-                                <ArcSegment Point="0,26.5" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
-                                <LineSegment Point="8.81,17.65" />
-                                <ArcSegment Point="26.5,25" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                        <PathGeometry> <!--Width=20 - Height=53-->
+                            <PathFigure StartPoint="26.5,7.5">
+                                <ArcSegment Point="44.2,0.22" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
+                                <LineSegment Point="52.7,9" />
+                                <ArcSegment Point="0.22,9" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
+                                <LineSegment Point="8.81,0.22" />
+                                <ArcSegment Point="26.5,7.5" Size="25,25" IsLargeArc="False" SweepDirection="Counterclockwise" />
                             </PathFigure>
                         </PathGeometry>
                     </Path.Data>
@@ -36,7 +36,7 @@
                            FontSize="{Binding FontSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
                            Text="{Binding Text, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
                 <Grid.RenderTransform>
-                    <ScaleTransform ScaleX="2" ScaleY="2" />
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
                 </Grid.RenderTransform>
             </Grid>
             <ControlTemplate.Triggers>

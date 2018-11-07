@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CustomShapeWpfButton"
-             mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="250">
-    <Grid Height="75" Width="75">
-        <Path x:Name="TopButton" Height="37.5" Width="53" Margin="11,0,11,37.5"
+             mc:Ignorable="d">
+    <Grid ShowGridLines="True">
+        <!--<Path x:Name="TopButton" Height="37.5" Width="53" Margin="11,0,11,37.5"
               Fill="Red">
             <Path.Data>
                 <PathGeometry>
@@ -65,13 +64,62 @@
                     </PathFigure>
                 </PathGeometry>
             </Path.Data>
+        </Path>-->
+
+        <Path x:Name="TestRightButton" Panel.ZIndex="100" VerticalAlignment="Center" HorizontalAlignment="Center"
+              Fill="Purple">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="0,44.18">
+                        <LineSegment Point="8.85,53.02" />
+                        <ArcSegment Point="8.85,0" Size="37.5,37.5" IsLargeArc="False" SweepDirection="CounterClockwise" />
+                        <LineSegment Point="0,8.84" />
+                        <ArcSegment Point="0,44.18" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                    </PathFigure>
+                    <!--<PathFigure StartPoint="17.68,17.67">
+                        <LineSegment Point="26.53,26.51" />
+                        <ArcSegment Point="26.53,-26.51" Size="37.5,37.5" IsLargeArc="False" SweepDirection="CounterClockwise" />
+                        <LineSegment Point="17.68,-17.67" />
+                        <ArcSegment Point="17.68,17.67" Size="25,25" IsLargeArc="False" SweepDirection="Clockwise" />
+                    </PathFigure>-->
+                </PathGeometry>
+            </Path.Data>
         </Path>
 
-        <Path x:Name="CircleButton" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="50"
-              Fill="Black">
+        <Path x:Name="TestLeftButton" Panel.ZIndex="100" VerticalAlignment="Center" HorizontalAlignment="Center"
+              Fill="Blue">
+            <Path.Data>
+                <PathGeometry> <!--ADD +11.5 for x ??? surement moins... --> 
+                    <PathFigure StartPoint="20.35,44.18">
+                        <LineSegment Point="11.5,53.02" />
+                        <ArcSegment Point="11.5,0" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="20.35,8.84" />
+                        <ArcSegment Point="20.35,44.18" Size="25,25" IsLargeArc="False" SweepDirection="CounterClockwise" />
+                    </PathFigure>
+                </PathGeometry>
+                <!--<PathGeometry>
+                    <PathFigure StartPoint="-17.68,17.67">
+                        <LineSegment Point="-26.53,26.51" />
+                        <ArcSegment Point="-26.53,-26.51" Size="37.5,37.5" IsLargeArc="False" SweepDirection="Clockwise" />
+                        <LineSegment Point="-17.68,-17.67" />
+                        <ArcSegment Point="-17.68,17.67" Size="25,25" IsLargeArc="False" SweepDirection="CounterClockwise" />
+                    </PathFigure>
+                </PathGeometry>-->
+            </Path.Data>
+        </Path>
+
+        <!--<Path x:Name="CircleButton" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" Width="50" Panel.ZIndex="11"
+              Fill="#60000000">
             <Path.Data>
                 <EllipseGeometry RadiusX="1" RadiusY="1"/>
             </Path.Data>
         </Path>
+
+        <Path x:Name="Circle2Button" Stretch="Uniform" VerticalAlignment="Center" HorizontalAlignment="Center" Height="75" Width="75" Panel.ZIndex="10"
+              Fill="#50000000">
+            <Path.Data>
+                <EllipseGeometry RadiusX="1" RadiusY="1"/>
+            </Path.Data>
+        </Path>-->
     </Grid>
 </UserControl>

@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using CustomShapeWpfButton.Enums;
+using CustomShapeWpfButton.Utils;
+using System.Windows;
 
 namespace CustomShapeWpfButton
 {
@@ -12,7 +14,8 @@ namespace CustomShapeWpfButton
             InitializeComponent();
 
             //this.TopButton.Click += TopButton_Click;
-            Grid.Children.Add(DrawUtil.CreateRightButtonPath(300));
+            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Right));
+            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Left));
         }
 
         private void TopButton_Click(object sender, RoutedEventArgs e)

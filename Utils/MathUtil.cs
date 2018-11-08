@@ -1,0 +1,49 @@
+﻿using System;
+
+namespace CustomShapeWpfButton.Utils
+{
+    /// <summary>
+    /// Math related methods.
+    /// </summary>
+    public static class MathUtil
+    {
+        #region Constants
+
+        /// <summary>
+        /// 45 degrees in rad.
+        /// </summary>
+        private const double RAD45 = 0.785D;
+
+        #endregion //Constants
+
+        #region Methods
+
+        /// <summary>
+        /// Round the value to 2 digits awayFromZero.
+        /// </summary>
+        public static double Round(double value)
+        {
+            return Math.Round(value, 2, MidpointRounding.AwayFromZero);
+        }
+
+        /// <summary>
+        /// Calculates X pos on the circle.
+        /// </summary>
+        /// <remarks>The formula is : x = r * cos(Angle)</remarks>
+        public static double CalculateX(double value)
+        {
+            return Round(value / 2 * Math.Cos(RAD45));
+        }
+
+        /// <summary>
+        /// Calculates Y pos on the circle.
+        /// </summary>
+        /// <remarks>The formula is : y = r * sin(Angle)</remarks>
+        public static double CalculateY(double value)
+        {
+            return Round(value / 2 * Math.Sin(RAD45));
+        }
+
+        #endregion //Methods
+    }
+}

@@ -12,6 +12,7 @@
                   Visibility="{Binding Visibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Converter={StaticResource BoolToVisibilityConverter}}"
                   RenderTransformOrigin="0.5,0.5">
                 <Path x:Name="Path" 
+                    RenderTransformOrigin="0.5,0.5"
                     StrokeThickness="0.3" 
                     Height="{Binding Height, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" 
                     Width="{Binding Width, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}}" 
@@ -28,6 +29,9 @@
                             </PathFigure>
                         </PathGeometry>
                     </Path.Data>
+                    <Path.LayoutTransform>
+                        <RotateTransform Angle="180"/>
+                    </Path.LayoutTransform>
                 </Path>
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
                            Margin="{Binding TextMargin, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 

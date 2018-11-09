@@ -4,7 +4,6 @@ using System.Windows.Media;
 using CustomShapeWpfButton.Enums;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System;
 using CustomShapeWpfButton.Converters;
 
 namespace CustomShapeWpfButton.Utils
@@ -14,14 +13,18 @@ namespace CustomShapeWpfButton.Utils
     /// </summary>
     public static class DrawUtil
     {
-        // TODO merge left/right && top/bottom
-        private static Point[] Points = null;
+        #region Static Properties
 
-        private static Path RightPath = null;
+        /// <summary>
+        /// Give access of properties inside the whole class.
+        /// </summary>
+        private static BaseArcButton ArcButton;
+
+        #endregion //Static Properties
 
         public static BaseArcButton CreateBaseArcButton(double size, PositionEnum position)
         {
-            var arcButton = new BaseArcButton();
+            ArcButton = new BaseArcButton();
             var template = new ControlTemplate(typeof(Button));
 
             #region Triggers
@@ -164,26 +167,28 @@ namespace CustomShapeWpfButton.Utils
                 case PositionEnum.Left:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
-                    generatedPath = CreateLeftButtonPath(size);
+                    generatedPath = CreateSideButtonPath(size);
+                    path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(180));
                     break;
 
                 case PositionEnum.Top:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top);
-                    generatedPath = CreateTopButtonPath(size);
+                    generatedPath = CreateSideButtonPath(size);
+                    path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(270));
                     break;
 
                 case PositionEnum.Right:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
-                    generatedPath = CreateRightButtonPath(size);
-                    RightPath = generatedPath;
+                    generatedPath = CreateSideButtonPath(size);
                     break;
 
                 case PositionEnum.Bottom:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Bottom);
-                    generatedPath = CreateBottomButtonPath(size);
+                    generatedPath = CreateSideButtonPath(size);
+                    path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(90));
                     break;
 
                 case PositionEnum.Center:
@@ -201,20 +206,19 @@ namespace CustomShapeWpfButton.Utils
             grid.AppendChild(textBlock);
 
             template.VisualTree = grid;
-            arcButton.Template = template;
+            ArcButton.Template = template;
 
             template.Seal();
 
-            return arcButton;
+            return ArcButton;
         }
 
         /// <summary>
-        /// Creates the right button's path.
+        /// Creates the horizontal button's path.
         /// </summary>
         /// <param name="size">Size of the global ArcButton.</param>
-        public static Path CreateRightButtonPath(double size)
+        public static Path CreateSideButtonPath(double size)
         {
-            //TODO: GETRENDERBOUNDS on PATH 
             var innerSize = size - MathUtil.Round(size / 3);
 
             var points = new Point[]
@@ -225,7 +229,6 @@ namespace CustomShapeWpfButton.Utils
                 new Point(MathUtil.CalculateX(innerSize), -MathUtil.CalculateY(innerSize)),
                 new Point(MathUtil.CalculateX(innerSize), MathUtil.CalculateY(innerSize))
             };
-            Points = points;
 
             var path = new Path
             {
@@ -234,18 +237,27 @@ namespace CustomShapeWpfButton.Utils
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
+            //var points2 = new Point[]
+            //{
+            //    new Point(points[0].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[0].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
+            //    new Point(points[1].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[1].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
+            //    new Point(points[2].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[2].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
+            //    new Point(points[3].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[3].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
+            //    new Point(points[4].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[4].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton))
+            //};
+
             var pathFigure = new PathFigure
             {
-                StartPoint = new Point(points[0].X - points[0].X, points[0].Y + points[1].Y),
+                StartPoint = new Point(points[0].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[0].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
                 IsClosed = true,
                 IsFilled = true,
                 Segments = new PathSegmentCollection
                 {
-                    new LineSegment { Point = new Point(points[1].X - points[0].X, points[1].Y + points[1].Y) },
-                    new ArcSegment { Point = new Point(points[2].X - points[0].X, points[2].Y + points[1].Y),
+                    new LineSegment { Point = new Point(points[1].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[1].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)) },
+                    new ArcSegment { Point = new Point(points[2].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[2].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
                         Size = new Size(MathUtil.Round(size/2), MathUtil.Round(size/2)), IsLargeArc = false, SweepDirection = SweepDirection.Counterclockwise },
-                    new LineSegment { Point = new Point(points[3].X - points[0].X, points[3].Y + points[1].Y) },
-                    new ArcSegment { Point = new Point(points[4].X - points[0].X, points[4].Y + points[1].Y),
+                    new LineSegment { Point = new Point(points[3].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[3].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)) },
+                    new ArcSegment { Point = new Point(points[4].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[4].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
                         Size = new Size(MathUtil.Round(innerSize/2), MathUtil.Round(innerSize/2)), IsLargeArc = false, SweepDirection = SweepDirection.Clockwise }
                 }
             };
@@ -255,74 +267,28 @@ namespace CustomShapeWpfButton.Utils
         }
 
         /// <summary>
-        /// Creates the left button's path.
-        /// </summary>
-        /// <param name="size">Size of the global ArcButton.</param>
-        public static Path CreateLeftButtonPath(double size)
-        {
-            var innerSize = size - MathUtil.Round(size / 3);
-
-            var points = new Point[]
-            {
-                new Point(MathUtil.CalculateX(innerSize), MathUtil.CalculateY(innerSize)),
-                new Point(MathUtil.CalculateX(size), MathUtil.CalculateY(size)),
-                new Point(MathUtil.CalculateX(size), -MathUtil.CalculateY(size)),
-                new Point(MathUtil.CalculateX(innerSize), -MathUtil.CalculateY(innerSize)),
-                new Point(MathUtil.CalculateX(innerSize), MathUtil.CalculateY(innerSize))
-            };
-
-            var path = new Path
-            {
-                Name = "Path",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-            };
-            var t = MathUtil.Round(RightPath.Data.Bounds.Width) - Points[1].X;
-            var pathFigure = new PathFigure
-            {
-                StartPoint = new Point(MathUtil.Round(RightPath.Data.Bounds.Width), points[0].Y + points[1].Y),
-                IsClosed = true,
-                IsFilled = true,
-                Segments = new PathSegmentCollection
-                {
-                    new LineSegment { Point = new Point(MathUtil.Round(RightPath.Data.Bounds.Width) - Points[1].X, points[1].Y + points[1].Y) },
-                    new ArcSegment { Point = new Point(MathUtil.Round(RightPath.Data.Bounds.Width) - Points[1].X, points[2].Y + points[1].Y),
-                        Size = new Size(MathUtil.Round(size/2), MathUtil.Round(size/2)), IsLargeArc = false, SweepDirection = SweepDirection.Clockwise },
-                    new LineSegment { Point = new Point(MathUtil.Round(RightPath.Data.Bounds.Width), points[3].Y + points[1].Y) },
-                    new ArcSegment { Point = new Point(MathUtil.Round(RightPath.Data.Bounds.Width), points[4].Y + points[1].Y),
-                        Size = new Size(MathUtil.Round(innerSize/2), MathUtil.Round(innerSize/2)), IsLargeArc = false, SweepDirection = SweepDirection.Counterclockwise }
-                }
-            };
-
-            path.Data = new PathGeometry(new[] { pathFigure });
-            return path;
-        }
-
-        /// <summary>
-        /// Creates the top button's path.
-        /// </summary>
-        /// <param name="size">Size of the global ArcButton.</param>
-        public static Path CreateTopButtonPath(double size)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Creates the bottom button's path.
-        /// </summary>
-        /// <param name="size">Size of the global ArcButton.</param>
-        public static Path CreateBottomButtonPath(double size)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Creates the center button's path.
         /// </summary>
         /// <param name="size">Size of the global ArcButton.</param>
         public static Path CreateCenterButtonPath(double size)
         {
-            throw new NotImplementedException();
+            var innerSize = size - MathUtil.Round(size / 3);
+            var radiusSize = MathUtil.Round(innerSize / 2);
+
+            var path = new Path
+            {
+                Name = "Path",
+                Height = innerSize,
+                Width = innerSize,
+                Stretch = Stretch.Uniform,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+
+            path.Data = new EllipseGeometry(new Point(radiusSize, radiusSize), radiusSize, radiusSize);
+            //path.Data = new EllipseGeometry(new Point(radiusSize + MathUtil.StrokeChecker(ArcButton), radiusSize + MathUtil.StrokeChecker(ArcButton)), radiusSize, radiusSize);
+
+            return path;
         }
     }
 }

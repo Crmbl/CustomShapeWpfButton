@@ -13,14 +13,11 @@ namespace CustomShapeWpfButton
         {
             InitializeComponent();
 
-            //this.TopButton.Click += TopButton_Click;
             Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Right));
             Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Left));
-        }
-
-        private void TopButton_Click(object sender, RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
+            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Top));
+            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Bottom));
+            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Center));
         }
     }
 }

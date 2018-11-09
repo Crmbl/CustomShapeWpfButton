@@ -16,11 +16,11 @@ namespace CustomShapeWpfButton
         private const string DefaultFontFamily = "Consolas";
         private const string DefaultTextMargin = "0,0,0,0";
         private const double DefaultFontSize = 16D;
-        private const double DefaultStrokeThickness = 0.3D;
+        private const double DefaultStrokeThickness = 5D; /*0.3D*/
         private const bool DefaultVisibility = true;
         private const string DefaultBorderBrushPressed = "#FFFF445D";
         private const string DefaultBackgroundPressed = "#FFFF445D";
-        private const string DefaultText = "Anus";
+        private const string DefaultText = "";
 
         #endregion //Constants
 

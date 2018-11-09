@@ -44,6 +44,14 @@ namespace CustomShapeWpfButton.Utils
             return Round(value / 2 * Math.Sin(RAD45));
         }
 
+        /// <summary>
+        /// Checks if there is Stroke on button, and returns the offset to apply.
+        /// </summary>
+        public static double StrokeChecker(BaseArcButton button)
+        {
+            return button.StrokeThickness == 0 ? 0 : Round(button.StrokeThickness / 2);
+        }
+
         #endregion //Methods
     }
 }

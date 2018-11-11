@@ -92,7 +92,7 @@ namespace CustomShapeWpfButton.Utils
 
             #region Bindings
 
-            var grid = new FrameworkElementFactory(typeof(Grid));
+            var grid = new FrameworkElementFactory(typeof(Grid), "Grid");
             grid.SetValue(FrameworkElement.HeightProperty, double.NaN);
             grid.SetValue(FrameworkElement.WidthProperty, double.NaN);
             grid.SetValue(UIElement.VisibilityProperty, new Binding
@@ -123,9 +123,10 @@ namespace CustomShapeWpfButton.Utils
                 RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(Button), 1)
             });
 
-            var textBlock = new FrameworkElementFactory(typeof(TextBlock));
-            textBlock.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            var textBlock = new FrameworkElementFactory(typeof(TextBlock), "Textblock");
+            // TODO
             textBlock.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+            textBlock.SetValue(TextBlock.TextAlignmentProperty, TextAlignment.Center);
             textBlock.SetValue(FrameworkElement.MarginProperty, new Binding
             {
                 Path = new PropertyPath("TextMargin"),
@@ -167,8 +168,10 @@ namespace CustomShapeWpfButton.Utils
                 case PositionEnum.Left:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+                    textBlock.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(180));
+                    ArcButton.Tag = PositionEnum.Left;
                     break;
 
                 case PositionEnum.Top:
@@ -176,12 +179,15 @@ namespace CustomShapeWpfButton.Utils
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(270));
+                    ArcButton.Tag = PositionEnum.Top;
                     break;
 
                 case PositionEnum.Right:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+                    textBlock.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     generatedPath = CreateSideButtonPath(size);
+                    ArcButton.Tag = PositionEnum.Right;
                     break;
 
                 case PositionEnum.Bottom:
@@ -189,12 +195,14 @@ namespace CustomShapeWpfButton.Utils
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Bottom);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(90));
+                    ArcButton.Tag = PositionEnum.Bottom;
                     break;
 
                 case PositionEnum.Center:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     generatedPath = CreateCenterButtonPath(size);
+                    ArcButton.Tag = PositionEnum.Center;
                     break;
             }
 
@@ -219,7 +227,7 @@ namespace CustomShapeWpfButton.Utils
         /// <param name="size">Size of the global ArcButton.</param>
         public static Path CreateSideButtonPath(double size)
         {
-            var innerSize = size - MathUtil.Round(size / 3);
+            var innerSize = size - MathUtil.Round(size / ArcButton.Proportion);
 
             var points = new Point[]
             {
@@ -237,27 +245,18 @@ namespace CustomShapeWpfButton.Utils
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
-            //var points2 = new Point[]
-            //{
-            //    new Point(points[0].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[0].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
-            //    new Point(points[1].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[1].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
-            //    new Point(points[2].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[2].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
-            //    new Point(points[3].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[3].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
-            //    new Point(points[4].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[4].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton))
-            //};
-
             var pathFigure = new PathFigure
             {
-                StartPoint = new Point(points[0].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[0].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
+                StartPoint = new Point(points[0].X - points[0].X + MathUtil.StrokeCornerChecker(ArcButton), points[0].Y + points[1].Y + MathUtil.StrokeCornerChecker(ArcButton)),
                 IsClosed = true,
                 IsFilled = true,
                 Segments = new PathSegmentCollection
                 {
-                    new LineSegment { Point = new Point(points[1].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[1].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)) },
-                    new ArcSegment { Point = new Point(points[2].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[2].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
+                    new LineSegment { Point = new Point(points[1].X - points[0].X + MathUtil.StrokeCornerChecker(ArcButton), points[1].Y + points[1].Y + MathUtil.StrokeCornerChecker(ArcButton)) },
+                    new ArcSegment { Point = new Point(points[2].X - points[0].X + MathUtil.StrokeCornerChecker(ArcButton), points[2].Y + points[1].Y + MathUtil.StrokeCornerChecker(ArcButton)),
                         Size = new Size(MathUtil.Round(size/2), MathUtil.Round(size/2)), IsLargeArc = false, SweepDirection = SweepDirection.Counterclockwise },
-                    new LineSegment { Point = new Point(points[3].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[3].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)) },
-                    new ArcSegment { Point = new Point(points[4].X - points[0].X + MathUtil.StrokeChecker(ArcButton), points[4].Y + points[1].Y + MathUtil.StrokeChecker(ArcButton)),
+                    new LineSegment { Point = new Point(points[3].X - points[0].X + MathUtil.StrokeCornerChecker(ArcButton), points[3].Y + points[1].Y + MathUtil.StrokeCornerChecker(ArcButton)) },
+                    new ArcSegment { Point = new Point(points[4].X - points[0].X + MathUtil.StrokeCornerChecker(ArcButton), points[4].Y + points[1].Y + MathUtil.StrokeCornerChecker(ArcButton)),
                         Size = new Size(MathUtil.Round(innerSize/2), MathUtil.Round(innerSize/2)), IsLargeArc = false, SweepDirection = SweepDirection.Clockwise }
                 }
             };
@@ -272,7 +271,7 @@ namespace CustomShapeWpfButton.Utils
         /// <param name="size">Size of the global ArcButton.</param>
         public static Path CreateCenterButtonPath(double size)
         {
-            var innerSize = size - MathUtil.Round(size / 3);
+            var innerSize = size - MathUtil.Round(size / ArcButton.Proportion);
             var radiusSize = MathUtil.Round(innerSize / 2);
 
             var path = new Path
@@ -285,10 +284,45 @@ namespace CustomShapeWpfButton.Utils
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
-            path.Data = new EllipseGeometry(new Point(radiusSize, radiusSize), radiusSize, radiusSize);
-            //path.Data = new EllipseGeometry(new Point(radiusSize + MathUtil.StrokeChecker(ArcButton), radiusSize + MathUtil.StrokeChecker(ArcButton)), radiusSize, radiusSize);
-
+            path.Data = new EllipseGeometry(new Point(radiusSize + MathUtil.StrokeCenterChecker(ArcButton), radiusSize + MathUtil.StrokeCenterChecker(ArcButton)), radiusSize, radiusSize);
             return path;
+        }
+
+        /// <summary>
+        /// ANUS TODO
+        /// </summary>
+        public static void AdaptMarginTextblock(BaseArcButton button)
+        {
+            var grid = button.Template.FindName("Grid", button) as Grid;
+            var textblock = button.Template.FindName("Textblock", button) as TextBlock;
+            var widthButton = MathUtil.Round((button.ActualWidth - MathUtil.Round(button.ActualWidth / button.Proportion)) / 2);
+            var heightButton = MathUtil.Round((button.ActualHeight - MathUtil.Round(button.ActualHeight / button.Proportion)) / 2);
+
+            Thickness margin = new Thickness();
+            switch(button.Tag)
+            {
+                case PositionEnum.Left:
+                    textblock.Width = widthButton;
+                    margin = new Thickness { Right = MathUtil.Round(grid.ActualWidth - widthButton) };
+                    break;
+
+                case PositionEnum.Top:
+                    textblock.Width = widthButton;
+                    margin = new Thickness { Bottom = MathUtil.Round(grid.ActualHeight - heightButton) };
+                    break;
+
+                case PositionEnum.Right:
+                    textblock.Width = widthButton;
+                    margin = new Thickness { Left = MathUtil.Round(grid.ActualWidth - widthButton) };
+                    break;
+
+                case PositionEnum.Bottom:
+                    textblock.Width = widthButton;
+                    margin = new Thickness { Top = MathUtil.Round(grid.ActualHeight - heightButton) };
+                    break;
+            };
+
+            button.TextMargin = margin;
         }
     }
 }

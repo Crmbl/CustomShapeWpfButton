@@ -6,8 +6,8 @@
         xmlns:customshapewpfbutton="clr-namespace:CustomShapeWpfButton"
         x:Class="CustomShapeWpfButton.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="400">
-    <Grid x:Name="Grid" ShowGridLines="True" Height="305" Width="305" HorizontalAlignment="Center" VerticalAlignment="Center">
+        Title="MainWindow" Height="500" Width="500">
+    <Grid x:Name="Grid" ShowGridLines="True" Height="301" Width="301" HorizontalAlignment="Center" VerticalAlignment="Center">
         <!--<customshapewpfbutton:TopArcButton x:Name="TopButton" Text="Top" Height="20" Width="53" TextMargin="0,0,0,7" Margin="188.125,26.583,350.874,322.416"/>
         <customshapewpfbutton:LeftArcButton x:Name="LeftButton" Text="Left" Height="53" Width="20" TextMargin="0,0,7,0" Margin="147.708,67.104,424.291,248.896"/>-->
         <!--<customshapewpfbutton:RightArcButton x:Name="RightButton" Panel.ZIndex="75" Text="Right" Height="53.3" Width="20.2" FontSize="4" TextMargin="7.5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="54.8,0,0,0" />-->

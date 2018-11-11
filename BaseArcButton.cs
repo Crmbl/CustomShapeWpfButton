@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using CustomShapeWpfButton.Utils;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,13 +15,13 @@ namespace CustomShapeWpfButton
         private const string DefaultBorderBrush = "#a29bfe";
         private const string DefaultForeground = "#000000";
         private const string DefaultFontFamily = "Consolas";
-        private const string DefaultTextMargin = "0,0,0,0";
         private const double DefaultFontSize = 16D;
-        private const double DefaultStrokeThickness = 5D; /*0.3D*/
+        private const double DefaultStrokeThickness = 1D;
         private const bool DefaultVisibility = true;
         private const string DefaultBorderBrushPressed = "#FFFF445D";
         private const string DefaultBackgroundPressed = "#FFFF445D";
-        private const string DefaultText = "";
+        private const string DefaultText = "TEST";
+        private const double DefaultProportion = 2D;
 
         #endregion //Constants
 
@@ -33,10 +34,11 @@ namespace CustomShapeWpfButton
         public new readonly static DependencyProperty FontSizeProperty = DependencyProperty.Register("FontSize", typeof(double), typeof(BaseArcButton), new PropertyMetadata(DefaultFontSize));
         public new readonly static DependencyProperty VisibilityProperty = DependencyProperty.Register("Visibility", typeof(bool), typeof(BaseArcButton), new PropertyMetadata(DefaultVisibility));
         public readonly static DependencyProperty StrokeThicknessProperty = DependencyProperty.Register("StrokeThickness", typeof(double), typeof(BaseArcButton), new PropertyMetadata(DefaultStrokeThickness));
-        public readonly static DependencyProperty TextMarginProperty = DependencyProperty.Register("TextMargin", typeof(string), typeof(BaseArcButton), new PropertyMetadata(DefaultTextMargin));
+        public readonly static DependencyProperty TextMarginProperty = DependencyProperty.Register("TextMargin", typeof(Thickness), typeof(BaseArcButton), new PropertyMetadata(null));
         public readonly static DependencyProperty BorderBrushPressedProperty = DependencyProperty.Register("BorderBrushPressed", typeof(string), typeof(BaseArcButton), new PropertyMetadata(DefaultBorderBrushPressed));
         public readonly static DependencyProperty BackgroundPressedProperty = DependencyProperty.Register("BackgroundPressed", typeof(string), typeof(BaseArcButton), new PropertyMetadata(DefaultBackgroundPressed));
         public readonly static DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(BaseArcButton), new PropertyMetadata(DefaultText));
+        public readonly static DependencyProperty ProportionProperty = DependencyProperty.Register("Proportion", typeof(double), typeof(BaseArcButton), new PropertyMetadata(DefaultProportion));
 
         #endregion //DependencyProperties
 
@@ -89,9 +91,9 @@ namespace CustomShapeWpfButton
             set { SetValue(VisibilityProperty, value); NotifyPropertyChanged("Visibility"); }
         }
 
-        public string TextMargin
+        public Thickness TextMargin
         {
-            get { return (string)GetValue(TextMarginProperty); }
+            get { return (Thickness)GetValue(TextMarginProperty); }
             set { SetValue(TextMarginProperty, value); NotifyPropertyChanged("TextMargin"); }
         }
 
@@ -117,6 +119,12 @@ namespace CustomShapeWpfButton
         {
             get { return (string)GetValue(BorderBrushPressedProperty); }
             set { SetValue(BorderBrushPressedProperty, value); NotifyPropertyChanged("BorderBrushPressed"); }
+        }
+
+        public double Proportion
+        {
+            get { return (double)GetValue(ProportionProperty); }
+            set { SetValue(ProportionProperty, value); NotifyPropertyChanged("Proportion"); }
         }
 
         public string BackgroundOver
@@ -149,5 +157,17 @@ namespace CustomShapeWpfButton
         {}
 
         #endregion //Constructors : UserControl
+
+        #region Methods
+
+        /// <summary>
+        /// Override render method to add margin to textblock.
+        /// </summary>
+        protected override void OnRender(DrawingContext dc)
+        {
+            DrawUtil.AdaptMarginTextblock(this);
+        }
+
+        #endregion //Methods
     }
 }

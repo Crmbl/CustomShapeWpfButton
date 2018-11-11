@@ -47,11 +47,18 @@ namespace CustomShapeWpfButton.Utils
         /// <summary>
         /// Checks if there is Stroke on button, and returns the offset to apply.
         /// </summary>
-        public static double StrokeChecker(BaseArcButton button)
+        public static double StrokeCornerChecker(BaseArcButton button)
+        {
+            return button.StrokeThickness == 0 ? 0 : Round(Math.Sqrt(2 * Math.Pow(button.StrokeThickness, 2)) / 2);
+        }
+
+        /// <summary>
+        /// Checks if there is Stroke on center button, and returns the offset to apply.
+        /// </summary>
+        public static double StrokeCenterChecker(BaseArcButton button)
         {
             return button.StrokeThickness == 0 ? 0 : Round(button.StrokeThickness / 2);
         }
-
         #endregion //Methods
     }
 }

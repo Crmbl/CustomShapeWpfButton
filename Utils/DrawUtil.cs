@@ -22,9 +22,9 @@ namespace CustomShapeWpfButton.Utils
 
         #endregion //Static Properties
 
-        public static BaseArcButton CreateBaseArcButton(double size, PositionEnum position)
+        public static BaseArcButton CreateBaseArcButton(double size, Position position, string text)
         {
-            ArcButton = new BaseArcButton();
+            ArcButton = new BaseArcButton(text);
             var template = new ControlTemplate(typeof(Button));
 
             #region Triggers
@@ -124,7 +124,6 @@ namespace CustomShapeWpfButton.Utils
             });
 
             var textBlock = new FrameworkElementFactory(typeof(TextBlock), "Textblock");
-            // TODO
             textBlock.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
             textBlock.SetValue(TextBlock.TextAlignmentProperty, TextAlignment.Center);
             textBlock.SetValue(FrameworkElement.MarginProperty, new Binding
@@ -165,44 +164,49 @@ namespace CustomShapeWpfButton.Utils
             Path generatedPath = null;
             switch(position)
             {
-                case PositionEnum.Left:
+                case Position.Left:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     textBlock.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(180));
-                    ArcButton.Tag = PositionEnum.Left;
+                    ArcButton.Tag = Position.Left;
+                    ArcButton.Name = "Left";
                     break;
 
-                case PositionEnum.Top:
+                case Position.Top:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(270));
-                    ArcButton.Tag = PositionEnum.Top;
+                    ArcButton.Tag = Position.Top;
+                    ArcButton.Name = "Top";
                     break;
 
-                case PositionEnum.Right:
+                case Position.Right:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     textBlock.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     generatedPath = CreateSideButtonPath(size);
-                    ArcButton.Tag = PositionEnum.Right;
+                    ArcButton.Tag = Position.Right;
+                    ArcButton.Name = "Right";
                     break;
 
-                case PositionEnum.Bottom:
+                case Position.Bottom:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Bottom);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(90));
-                    ArcButton.Tag = PositionEnum.Bottom;
+                    ArcButton.Tag = Position.Bottom;
+                    ArcButton.Name = "Bottom";
                     break;
 
-                case PositionEnum.Center:
+                case Position.Center:
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     generatedPath = CreateCenterButtonPath(size);
-                    ArcButton.Tag = PositionEnum.Center;
+                    ArcButton.Tag = Position.Center;
+                    ArcButton.Name = "Center";
                     break;
             }
 
@@ -227,6 +231,7 @@ namespace CustomShapeWpfButton.Utils
         /// <param name="size">Size of the global ArcButton.</param>
         public static Path CreateSideButtonPath(double size)
         {
+            size = size - ArcButton.StrokeThickness;
             var innerSize = size - MathUtil.Round(size / ArcButton.Proportion);
 
             var points = new Point[]
@@ -271,6 +276,7 @@ namespace CustomShapeWpfButton.Utils
         /// <param name="size">Size of the global ArcButton.</param>
         public static Path CreateCenterButtonPath(double size)
         {
+            size = size - ArcButton.StrokeThickness;
             var innerSize = size - MathUtil.Round(size / ArcButton.Proportion);
             var radiusSize = MathUtil.Round(innerSize / 2);
 
@@ -301,22 +307,22 @@ namespace CustomShapeWpfButton.Utils
             Thickness margin = new Thickness();
             switch(button.Tag)
             {
-                case PositionEnum.Left:
+                case Position.Left:
                     textblock.Width = widthButton;
                     margin = new Thickness { Right = MathUtil.Round(grid.ActualWidth - widthButton) };
                     break;
 
-                case PositionEnum.Top:
+                case Position.Top:
                     textblock.Width = widthButton;
                     margin = new Thickness { Bottom = MathUtil.Round(grid.ActualHeight - heightButton) };
                     break;
 
-                case PositionEnum.Right:
+                case Position.Right:
                     textblock.Width = widthButton;
                     margin = new Thickness { Left = MathUtil.Round(grid.ActualWidth - widthButton) };
                     break;
 
-                case PositionEnum.Bottom:
+                case Position.Bottom:
                     textblock.Width = widthButton;
                     margin = new Thickness { Top = MathUtil.Round(grid.ActualHeight - heightButton) };
                     break;

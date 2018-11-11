@@ -20,7 +20,7 @@ namespace CustomShapeWpfButton
         private const bool DefaultVisibility = true;
         private const string DefaultBorderBrushPressed = "#FFFF445D";
         private const string DefaultBackgroundPressed = "#FFFF445D";
-        private const string DefaultText = "TEST";
+        private const string DefaultText = "N/A";
         private const double DefaultProportion = 2D;
 
         #endregion //Constants
@@ -154,9 +154,15 @@ namespace CustomShapeWpfButton
         #region Constructors
 
         public BaseArcButton()
-        {}
+        {
+        }
 
-        #endregion //Constructors : UserControl
+        public BaseArcButton(string text)
+        {
+            Text = text;
+        }
+
+        #endregion //Constructors
 
         #region Methods
 

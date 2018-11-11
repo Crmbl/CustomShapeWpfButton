@@ -3,7 +3,7 @@
     /// <summary>
     /// Defines the five positions of button.
     /// </summary>
-    public enum PositionEnum
+    public enum Position
     {
         Left = 0,
         Top = 1,

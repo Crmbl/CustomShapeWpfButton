@@ -1,5 +1,5 @@
 ﻿using CustomShapeWpfButton.Enums;
-using CustomShapeWpfButton.Utils;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace CustomShapeWpfButton
@@ -13,11 +13,18 @@ namespace CustomShapeWpfButton
         {
             InitializeComponent();
 
-            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Right));
-            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Left));
-            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Top));
-            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Bottom));
-            Grid.Children.Add(DrawUtil.CreateBaseArcButton(300D, PositionEnum.Center));
+            var values = new Dictionary<Position, string>();
+            values.Add(Position.Right, "Right");
+            values.Add(Position.Left, "Left");
+            values.Add(Position.Top, "Top");
+            values.Add(Position.Bottom, "Bottom");
+            values.Add(Position.Center, "Split");
+            ArcButton arcButton = new ArcButton(300, values);
+
+            Grid.Children.Add(arcButton);
+
+            arcButton.ToggleVisibility(Position.Left);
+            arcButton.UpdateButtonProperty(Position.Right, "Background", "#FFCE00");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CustomShapeWpfButton.Utils;
+﻿using CustomShapeWpfButton.Enums;
+using CustomShapeWpfButton.Utils;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -167,6 +168,7 @@ namespace CustomShapeWpfButton
         public BaseArcButton(string text)
         {
             Text = text;
+            this.Click += HandleClick;
         }
 
         #endregion //Constructors
@@ -179,6 +181,41 @@ namespace CustomShapeWpfButton
         protected override void OnRender(DrawingContext dc)
         {
             DrawUtil.AdaptMarginTextblock(this);
+        }
+
+        /// <summary>
+        /// Forward the click event to the right ArcButton.Event.
+        /// </summary>
+        protected void HandleClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is BaseArcButton)
+            {
+                var button = sender as BaseArcButton;
+                var position = (Position)button.Tag;
+
+                switch (position)
+                {
+                    case Position.Left:
+                        RaiseEvent(new RoutedEventArgs(ArcButton.LeftClickEvent));
+                        break;
+
+                    case Position.Right:
+                        RaiseEvent(new RoutedEventArgs(ArcButton.RightClickEvent));
+                        break;
+
+                    case Position.Top:
+                        RaiseEvent(new RoutedEventArgs(ArcButton.TopClickEvent));
+                        break;
+
+                    case Position.Bottom:
+                        RaiseEvent(new RoutedEventArgs(ArcButton.BottomClickEvent));
+                        break;
+
+                    case Position.Center:
+                        RaiseEvent(new RoutedEventArgs(ArcButton.CenterClickEvent));
+                        break;
+                }
+            }
         }
 
         #endregion //Methods

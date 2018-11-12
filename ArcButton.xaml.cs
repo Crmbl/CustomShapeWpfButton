@@ -3,6 +3,7 @@ using CustomShapeWpfButton.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CustomShapeWpfButton
@@ -12,6 +13,50 @@ namespace CustomShapeWpfButton
     /// </summary>
     public partial class ArcButton : UserControl
     {
+        #region Events
+
+        public static readonly RoutedEvent LeftClickEvent = EventManager.RegisterRoutedEvent("LeftClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ArcButton));
+        public static readonly RoutedEvent RightClickEvent = EventManager.RegisterRoutedEvent("RightClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ArcButton));
+        public static readonly RoutedEvent TopClickEvent = EventManager.RegisterRoutedEvent("TopClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ArcButton));
+        public static readonly RoutedEvent BottomClickEvent = EventManager.RegisterRoutedEvent("BottomClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ArcButton));
+        public static readonly RoutedEvent CenterClickEvent = EventManager.RegisterRoutedEvent("CenterClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ArcButton));
+
+        #endregion //Events
+
+        #region Properties
+
+        public event RoutedEventHandler LeftClick
+        {
+            add { AddHandler(LeftClickEvent, value); }
+            remove { RemoveHandler(LeftClickEvent, value); }
+        }
+
+        public event RoutedEventHandler RightClick
+        {
+            add { AddHandler(RightClickEvent, value); }
+            remove { RemoveHandler(RightClickEvent, value); }
+        }
+
+        public event RoutedEventHandler TopClick
+        {
+            add { AddHandler(TopClickEvent, value); }
+            remove { RemoveHandler(TopClickEvent, value); }
+        }
+
+        public event RoutedEventHandler BottomClick
+        {
+            add { AddHandler(BottomClickEvent, value); }
+            remove { RemoveHandler(BottomClickEvent, value); }
+        }
+
+        public event RoutedEventHandler CenterClick
+        {
+            add { AddHandler(CenterClickEvent, value); }
+            remove { RemoveHandler(CenterClickEvent, value); }
+        }
+
+        #endregion //Properties
+
         #region Constructors
 
         /// <summary>
@@ -62,6 +107,8 @@ namespace CustomShapeWpfButton
         #endregion //Constructors
 
         #region Methods
+
+
 
         /// <summary>
         /// Toggle visibility for the given position/button.

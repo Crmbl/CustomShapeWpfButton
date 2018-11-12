@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CustomShapeWpfButton.Crmbl</id>
+    <version>1.0.0</version>
+    <title>CustomShapeWpfButton</title>
+    <authors>Crmbl</authors>
+    <owners>Crmbl</owners>
+    <projectUrl>https://github.com/Crmbl/CustomShapeWpfButton</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A circle button.</description>
+    <releaseNotes>Fully working button.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>wpf button</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\CustomShapeWpfButton.dll" target="lib\net46\CustomShapeWpfButton.dll" />
+    <file src="README.md" target="" />
+  </files>
+</package>

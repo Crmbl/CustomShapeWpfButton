@@ -22,9 +22,14 @@ namespace CustomShapeWpfButton.Utils
 
         #endregion //Static Properties
 
-        public static BaseArcButton CreateBaseArcButton(double size, Position position, string text)
+        public static BaseArcButton CreateBaseArcButton(double size, Position position, string text, double proportion = default(double), double strokeThickness = default(double))
         {
             ArcButton = new BaseArcButton(text);
+            if (proportion != default(double))
+                ArcButton.Proportion = proportion;
+            if (strokeThickness != default(double))
+                ArcButton.StrokeThickness = strokeThickness;
+
             var template = new ControlTemplate(typeof(Button));
 
             #region Triggers
@@ -170,6 +175,8 @@ namespace CustomShapeWpfButton.Utils
                     textBlock.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(180));
+                    path.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
+                    path.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     ArcButton.Tag = Position.Left;
                     ArcButton.Name = "Left";
                     break;
@@ -179,6 +186,8 @@ namespace CustomShapeWpfButton.Utils
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(270));
+                    path.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+                    path.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Top);
                     ArcButton.Tag = Position.Top;
                     ArcButton.Name = "Top";
                     break;
@@ -188,6 +197,8 @@ namespace CustomShapeWpfButton.Utils
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     textBlock.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
                     generatedPath = CreateSideButtonPath(size);
+                    path.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right);
+                    path.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     ArcButton.Tag = Position.Right;
                     ArcButton.Name = "Right";
                     break;
@@ -197,6 +208,8 @@ namespace CustomShapeWpfButton.Utils
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Bottom);
                     generatedPath = CreateSideButtonPath(size);
                     path.SetValue(FrameworkElement.LayoutTransformProperty, new RotateTransform(90));
+                    path.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+                    path.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Bottom);
                     ArcButton.Tag = Position.Bottom;
                     ArcButton.Name = "Bottom";
                     break;
@@ -205,6 +218,8 @@ namespace CustomShapeWpfButton.Utils
                     grid.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
                     grid.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     generatedPath = CreateCenterButtonPath(size);
+                    path.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+                    path.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
                     ArcButton.Tag = Position.Center;
                     ArcButton.Name = "Center";
                     break;
@@ -295,14 +310,14 @@ namespace CustomShapeWpfButton.Utils
         }
 
         /// <summary>
-        /// ANUS TODO
+        /// Adapts the margin for the textblock.
         /// </summary>
         public static void AdaptMarginTextblock(BaseArcButton button)
         {
             var grid = button.Template.FindName("Grid", button) as Grid;
             var textblock = button.Template.FindName("Textblock", button) as TextBlock;
-            var widthButton = MathUtil.Round((button.ActualWidth - MathUtil.Round(button.ActualWidth / button.Proportion)) / 2);
-            var heightButton = MathUtil.Round((button.ActualHeight - MathUtil.Round(button.ActualHeight / button.Proportion)) / 2);
+            var widthButton = MathUtil.Round((button.ActualWidth - MathUtil.Round(button.ActualWidth / button.Proportion)) / MathUtil.MarginCalculator(button.Proportion));
+            var heightButton = MathUtil.Round((button.ActualHeight - MathUtil.Round(button.ActualHeight / button.Proportion)) / MathUtil.MarginCalculator(button.Proportion));
 
             Thickness margin = new Thickness();
             switch(button.Tag)
@@ -313,7 +328,6 @@ namespace CustomShapeWpfButton.Utils
                     break;
 
                 case Position.Top:
-                    textblock.Width = widthButton;
                     margin = new Thickness { Bottom = MathUtil.Round(grid.ActualHeight - heightButton) };
                     break;
 
@@ -323,7 +337,6 @@ namespace CustomShapeWpfButton.Utils
                     break;
 
                 case Position.Bottom:
-                    textblock.Width = widthButton;
                     margin = new Thickness { Top = MathUtil.Round(grid.ActualHeight - heightButton) };
                     break;
             };

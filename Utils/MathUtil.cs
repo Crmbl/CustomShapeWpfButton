@@ -14,6 +14,11 @@ namespace CustomShapeWpfButton.Utils
         /// </summary>
         private const double RAD45 = 0.785D;
 
+        /// <summary>
+        /// Const used for margin calculation.
+        /// </summary>
+        private const double DIVIDER = 2;
+
         #endregion //Constants
 
         #region Methods
@@ -59,6 +64,15 @@ namespace CustomShapeWpfButton.Utils
         {
             return button.StrokeThickness == 0 ? 0 : Round(button.StrokeThickness / 2);
         }
+
+        /// <summary>
+        /// Calculates the text margin with proportion.
+        /// </summary>
+        public static double MarginCalculator(double value)
+        {
+            return (value - DIVIDER) * DIVIDER + DIVIDER;
+        }
+
         #endregion //Methods
     }
 }

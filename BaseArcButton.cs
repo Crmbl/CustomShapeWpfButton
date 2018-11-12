@@ -18,8 +18,8 @@ namespace CustomShapeWpfButton
         private const double DefaultFontSize = 16D;
         private const double DefaultStrokeThickness = 1D;
         private const bool DefaultVisibility = true;
-        private const string DefaultBorderBrushPressed = "#FFFF445D";
-        private const string DefaultBackgroundPressed = "#FFFF445D";
+        private const string DefaultBorderBrushPressed = "#a29bfe";
+        private const string DefaultBackgroundPressed = "#55efc4";
         private const string DefaultText = "N/A";
         private const double DefaultProportion = 2D;
 
@@ -153,10 +153,17 @@ namespace CustomShapeWpfButton
 
         #region Constructors
 
+        /// <summary>
+        /// Defaut constructor.
+        /// </summary>
         public BaseArcButton()
         {
         }
 
+        /// <summary>
+        /// Init the text value of the button.
+        /// </summary>
+        /// <param name="text"></param>
         public BaseArcButton(string text)
         {
             Text = text;

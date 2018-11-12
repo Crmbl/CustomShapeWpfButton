@@ -1,5 +1,6 @@
 ﻿using CustomShapeWpfButton.Enums;
 using CustomShapeWpfButton.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
@@ -30,11 +31,11 @@ namespace CustomShapeWpfButton
 
             var arcButtons = new List<BaseArcButton>
             {
-                DrawUtil.CreateBaseArcButton(size, Position.Left, textValues[Position.Left]),
-                DrawUtil.CreateBaseArcButton(size, Position.Right, textValues[Position.Right]),
-                DrawUtil.CreateBaseArcButton(size, Position.Top, textValues[Position.Top]),
-                DrawUtil.CreateBaseArcButton(size, Position.Bottom, textValues[Position.Bottom]),
-                DrawUtil.CreateBaseArcButton(size, Position.Center, textValues[Position.Center])
+                DrawUtil.CreateBaseArcButton(size, Position.Left, textValues[Position.Left], proportion, strokeThickness),
+                DrawUtil.CreateBaseArcButton(size, Position.Right, textValues[Position.Right], proportion, strokeThickness),
+                DrawUtil.CreateBaseArcButton(size, Position.Top, textValues[Position.Top], proportion, strokeThickness),
+                DrawUtil.CreateBaseArcButton(size, Position.Bottom, textValues[Position.Bottom], proportion, strokeThickness),
+                DrawUtil.CreateBaseArcButton(size, Position.Center, textValues[Position.Center], proportion, strokeThickness)
             };
 
             foreach (var button in arcButtons)
@@ -47,16 +48,12 @@ namespace CustomShapeWpfButton
                     button.Foreground = foreground;
                 if (!string.IsNullOrWhiteSpace(fontFamily))
                     button.FontFamily = fontFamily;
-                if (fontSize != default(double))
-                    button.FontSize = fontSize;
-                if (strokeThickness != default(double))
-                    button.StrokeThickness = strokeThickness;
                 if (!string.IsNullOrWhiteSpace(borderBrushPressed))
                     button.BorderBrushPressed = borderBrushPressed;
                 if (!string.IsNullOrWhiteSpace(backgroundPressed))
                     button.BackgroundPressed = backgroundPressed;
-                if (proportion != default(double))
-                    button.Proportion = proportion;
+                if (fontSize != default(double))
+                    button.FontSize = fontSize;
 
                 Grid.Children.Add(button);
             }
@@ -66,6 +63,9 @@ namespace CustomShapeWpfButton
 
         #region Methods
 
+        /// <summary>
+        /// Toggle visibility for the given position/button.
+        /// </summary>
         public void ToggleVisibility(Position position)
         {
             BaseArcButton button = new BaseArcButton();
@@ -98,17 +98,49 @@ namespace CustomShapeWpfButton
             }
         }
 
-        public void UpdateButtonsProperty()
+        /// <summary>
+        /// Allows to update property for every buttons.
+        /// </summary>
+        public void UpdateButtonsProperty(string propertyName, object value)
         {
+            var buttons = new BaseArcButton[]
+            {
+                this.Grid.Children.Cast<BaseArcButton>().FirstOrDefault(x => (Position)x.Tag == Position.Left),
+                this.Grid.Children.Cast<BaseArcButton>().FirstOrDefault(x => (Position)x.Tag == Position.Right),
+                this.Grid.Children.Cast<BaseArcButton>().FirstOrDefault(x => (Position)x.Tag == Position.Top),
+                this.Grid.Children.Cast<BaseArcButton>().FirstOrDefault(x => (Position)x.Tag == Position.Bottom),
+                this.Grid.Children.Cast<BaseArcButton>().FirstOrDefault(x => (Position)x.Tag == Position.Center)
+            };
 
+            foreach (var button in buttons)
+                UpdateButtonProperty((Position)button.Tag, propertyName, value);
         }
         
+        /// <summary>
+        /// Allow to update property for a specific button.
+        /// </summary>
         public void UpdateButtonProperty(Position position, string propertyName, object value)
         {
             var button = this.Grid.Children.Cast<BaseArcButton>().FirstOrDefault(x => (Position)x.Tag == position);
 
-            if (propertyName == nameof(button.Background))
+            if (propertyName.ToLower() == nameof(button.Background).ToLower())
                 button.Background = value.ToString();
+            if (propertyName.ToLower() == nameof(button.BorderBrush).ToLower())
+                button.BorderBrush = value.ToString();
+            if (propertyName.ToLower() == nameof(button.Foreground).ToLower())
+                button.Foreground = value.ToString();
+            if (propertyName.ToLower() == nameof(button.FontFamily).ToLower())
+                button.FontFamily = value.ToString();
+            if (propertyName.ToLower() == nameof(button.BorderBrushPressed).ToLower())
+                button.BorderBrushPressed = value.ToString();
+            if (propertyName.ToLower() == nameof(button.BackgroundPressed).ToLower())
+                button.BackgroundPressed = value.ToString();
+            if (propertyName.ToLower() == nameof(button.FontSize).ToLower())
+                button.FontSize = (double)value;
+            if (propertyName.ToLower() == nameof(button.StrokeThickness).ToLower())
+                throw new Exception("The strokeThickness cannot be modified after the shape has been created.");
+            if (propertyName.ToLower() == nameof(button.Proportion).ToLower())
+                throw new Exception("The proportion cannot be modified after the shape has been created.");
         }
 
         #endregion //Methods

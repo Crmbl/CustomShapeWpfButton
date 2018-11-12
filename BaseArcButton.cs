@@ -190,7 +190,7 @@ namespace CustomShapeWpfButton
         {
             if (sender is BaseArcButton)
             {
-                var button = sender as BaseArcButton;
+                var button = (BaseArcButton)sender;
                 var position = (Position)button.Tag;
 
                 switch (position)

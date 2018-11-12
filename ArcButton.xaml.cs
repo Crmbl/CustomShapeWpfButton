@@ -108,8 +108,6 @@ namespace CustomShapeWpfButton
 
         #region Methods
 
-
-
         /// <summary>
         /// Toggle visibility for the given position/button.
         /// </summary>
@@ -182,6 +180,8 @@ namespace CustomShapeWpfButton
                 button.BorderBrushPressed = value.ToString();
             if (propertyName.ToLower() == nameof(button.BackgroundPressed).ToLower())
                 button.BackgroundPressed = value.ToString();
+            if (propertyName.ToLower() == nameof(button.Visibility).ToLower())
+                button.Visibility = (bool)value;
             if (propertyName.ToLower() == nameof(button.FontSize).ToLower())
                 button.FontSize = (double)value;
             if (propertyName.ToLower() == nameof(button.StrokeThickness).ToLower())

@@ -165,9 +165,11 @@ namespace CustomShapeWpfButton
         /// Init the text value of the button.
         /// </summary>
         /// <param name="text"></param>
-        public BaseArcButton(string text)
+        public BaseArcButton(string text, Position position)
         {
             Text = text;
+            Tag = position;
+
             this.Click += HandleClick;
         }
 

@@ -6,6 +6,7 @@ It gives access to 5 buttons, one in the center and 4 around it.
 You can customize the radius, the colors... I try to fit to my needs first.
 To add it, simply write this :
 
+```c#
 //defines the text values for the buttons.
 var values = new Dictionary<Position, string>
 {
@@ -15,14 +16,19 @@ var values = new Dictionary<Position, string>
     { Position.Bottom, "Bottom" },
     { Position.Center, "Split" }
 };
+```
+```c#
 //basic constructor, with every properties to override to your tastes.
 ArcButton arcButton = new ArcButton(230, values);
+```
 
 You have 5 click events to bind to :
+```c#
 arcButton.LeftClick
 arcButton.RightClick
 arcButton.TopClick
 arcButton.BottomClick
 arcButton.CenterClick
+```
 
 ![screenshot arcbutton](https://raw.github.com/Crmbl/CustomShapeWpfButton/master/screenshot.PNG)

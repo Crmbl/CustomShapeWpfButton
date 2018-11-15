@@ -131,6 +131,13 @@ namespace CustomShapeWpfButton.Utils
             var textBlock = new FrameworkElementFactory(typeof(TextBlock), "Textblock");
             textBlock.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
             textBlock.SetValue(TextBlock.TextAlignmentProperty, TextAlignment.Center);
+            textBlock.SetValue(UIElement.VisibilityProperty, new Binding
+            {
+                Path = new PropertyPath("TextVisibility"),
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(Button), 1),
+                Converter = new BoolToVisibilityConverter()
+            });
             textBlock.SetValue(FrameworkElement.MarginProperty, new Binding
             {
                 Path = new PropertyPath("TextMargin"),

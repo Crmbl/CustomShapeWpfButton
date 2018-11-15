@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>CustomShapeWpfButton.Crmbl</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>CustomShapeWpfButton</title>
     <authors>Crmbl</authors>
     <owners>Crmbl</owners>
     <projectUrl>https://github.com/Crmbl/CustomShapeWpfButton</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A circle button.</description>
-    <releaseNotes>Fully working button.</releaseNotes>
+    <description>A circle shape, with 5 buttons in it.</description>
+    <releaseNotes>Add properties for customization.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>wpf button</tags>
   </metadata>

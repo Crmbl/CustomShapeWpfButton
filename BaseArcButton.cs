@@ -34,6 +34,7 @@ namespace CustomShapeWpfButton
         public new readonly static DependencyProperty FontFamilyProperty = DependencyProperty.Register("FontFamily", typeof(string), typeof(BaseArcButton), new PropertyMetadata(DefaultFontFamily));
         public new readonly static DependencyProperty FontSizeProperty = DependencyProperty.Register("FontSize", typeof(double), typeof(BaseArcButton), new PropertyMetadata(DefaultFontSize));
         public new readonly static DependencyProperty VisibilityProperty = DependencyProperty.Register("Visibility", typeof(bool), typeof(BaseArcButton), new PropertyMetadata(DefaultVisibility));
+        public readonly static DependencyProperty TextVisibilityProperty = DependencyProperty.Register("TextVisibility", typeof(bool), typeof(BaseArcButton), new PropertyMetadata(DefaultVisibility));
         public readonly static DependencyProperty StrokeThicknessProperty = DependencyProperty.Register("StrokeThickness", typeof(double), typeof(BaseArcButton), new PropertyMetadata(DefaultStrokeThickness));
         public readonly static DependencyProperty TextMarginProperty = DependencyProperty.Register("TextMargin", typeof(Thickness), typeof(BaseArcButton), new PropertyMetadata(null));
         public readonly static DependencyProperty BorderBrushPressedProperty = DependencyProperty.Register("BorderBrushPressed", typeof(string), typeof(BaseArcButton), new PropertyMetadata(DefaultBorderBrushPressed));
@@ -108,6 +109,12 @@ namespace CustomShapeWpfButton
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); NotifyPropertyChanged("Text"); }
+        }
+
+        public bool TextVisibility
+        {
+            get { return (bool)GetValue(TextVisibilityProperty); }
+            set { SetValue(TextVisibilityProperty, value); NotifyPropertyChanged("TextVisibility"); }
         }
 
         public string BackgroundPressed

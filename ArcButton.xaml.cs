@@ -170,24 +170,30 @@ namespace CustomShapeWpfButton
 
             if (propertyName.ToLower() == nameof(button.Background).ToLower())
                 button.Background = value.ToString();
-            if (propertyName.ToLower() == nameof(button.BorderBrush).ToLower())
+            else if (propertyName.ToLower() == nameof(button.BorderBrush).ToLower())
                 button.BorderBrush = value.ToString();
-            if (propertyName.ToLower() == nameof(button.Foreground).ToLower())
+            else if (propertyName.ToLower() == nameof(button.Foreground).ToLower())
                 button.Foreground = value.ToString();
-            if (propertyName.ToLower() == nameof(button.FontFamily).ToLower())
+            else if (propertyName.ToLower() == nameof(button.FontFamily).ToLower())
                 button.FontFamily = value.ToString();
-            if (propertyName.ToLower() == nameof(button.BorderBrushPressed).ToLower())
+            else if (propertyName.ToLower() == nameof(button.BorderBrushPressed).ToLower())
                 button.BorderBrushPressed = value.ToString();
-            if (propertyName.ToLower() == nameof(button.BackgroundPressed).ToLower())
+            else if (propertyName.ToLower() == nameof(button.BackgroundPressed).ToLower())
                 button.BackgroundPressed = value.ToString();
-            if (propertyName.ToLower() == nameof(button.Visibility).ToLower())
+            else if (propertyName.ToLower() == nameof(button.Text).ToLower())
+                button.Text = value.ToString();
+            else if (propertyName.ToLower() == nameof(button.Visibility).ToLower())
                 button.Visibility = (bool)value;
-            if (propertyName.ToLower() == nameof(button.FontSize).ToLower())
+            else if (propertyName.ToLower() == nameof(button.TextVisibility).ToLower())
+                button.TextVisibility = (bool)value;
+            else if (propertyName.ToLower() == nameof(button.FontSize).ToLower())
                 button.FontSize = (double)value;
-            if (propertyName.ToLower() == nameof(button.StrokeThickness).ToLower())
+            else if (propertyName.ToLower() == nameof(button.StrokeThickness).ToLower())
                 throw new Exception("The strokeThickness cannot be modified after the shape has been created.");
-            if (propertyName.ToLower() == nameof(button.Proportion).ToLower())
+            else if (propertyName.ToLower() == nameof(button.Proportion).ToLower())
                 throw new Exception("The proportion cannot be modified after the shape has been created.");
+            else
+                throw new Exception($"The given propertyName - {propertyName} is not defined in the UpdateButtonProperty method.");
         }
 
         #endregion //Methods

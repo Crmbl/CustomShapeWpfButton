@@ -72,7 +72,7 @@ namespace CustomShapeWpfButton
         public new string BorderBrush
         {
             get { return (string)GetValue(BorderBrushProperty); }
-            set { SetValue(BackgroundProperty, value); NotifyPropertyChanged("BorderBrush"); }
+            set { SetValue(BorderBrushProperty, value); NotifyPropertyChanged("BorderBrush"); }
         }
 
         public new string FontFamily

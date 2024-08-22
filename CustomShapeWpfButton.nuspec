@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CustomShapeWpfButton.Crmbl</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <title>CustomShapeWpfButton</title>
     <authors>Crmbl</authors>
     <owners>Crmbl</owners>
@@ -14,7 +14,7 @@
     <tags>wpf button</tags>
   </metadata>
   <files>
-    <file src="bin\Release\CustomShapeWpfButton.dll" target="lib\net46\CustomShapeWpfButton.dll" />
+    <file src="bin\Release\CustomShapeWpfButton.dll" target="lib\net48\CustomShapeWpfButton.dll" />
     <file src="README.md" target="" />
   </files>
 </package>
